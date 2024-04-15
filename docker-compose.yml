@@ -1,3 +1,4 @@
+# https://www.elastic.co/blog/getting-started-with-the-elastic-stack-and-docker-compose
 ---
 version: "3.9"
 services:
@@ -5,14 +6,14 @@ services:
     container_name: logstash
     image: docker.elastic.co/logstash/logstash:8.12.2
     environment:
-      - DATADIR=/logstash/data
-      - CONFDIR=/logstash/config
-      - PATTERNDIR=/logstash/config/patterns
-      - CONFIG=/logstash/config/logstash.conf
+      - DATADIR=/data
+      - CONFDIR=/config
+      - CONFIG=/config/logstash.conf
+      # - PATTERNDIR=/config/patterns
       # - LOGDIR=/logs/
     volumes:
-      - ./logstash/config:/logstash/config
-      - ./logstash/data:/logstash/data
+      - ./config:/config
+      - ./data:/data
       # - ./logs/:/logs/ # the dir with log files for ingest
 
   mysql:

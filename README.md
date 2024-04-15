@@ -10,6 +10,7 @@ MySQL demo with ELK ( ElasticSearch, Logstash, Kibana )
   - https://container-registry.oracle.com/
   - https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/linux-installation-docker.html
   - https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/docker-mysql-getting-started.html
+  - https://github.com/mysql/mysql-docker/blob/main/mysql-server/8.1/Dockerfile
 - https://www.elastic.co/blog/getting-started-with-the-elastic-stack-and-docker-compose
 
 ## Docker
