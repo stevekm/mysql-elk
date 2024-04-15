@@ -127,6 +127,8 @@ tar -zvxf plugin/mysql-connector-j-8.3.0.tar.gz -C plugin
 
 Now you can use the Logstash container with commands like this
 
+- note that we are not running a persistent Logstash instance here, for the sake of being able to see and test easier, but you would want a persistent instance with `docker compose up -d` in real life
+
 ```bash
 # NOTE: 'logstash' is the default entrypoint
 # check logstash help
@@ -195,6 +197,55 @@ docker compose run logstash -f /config/logstash.conf
        "timestamp" => 2024-04-15T16:49:06.000Z
 }
 
+```
+
+Now if we run it again, it will not read any records because it remembers where it left off
+
+```bash
+docker compose run logstash -f /config/logstash.conf
+```
+
+But if we add more records, it will read them
+
+```bash
+docker compose exec -ti mysql mysql -u admin -p my-first-db -e "
+INSERT INTO logs ( ip, method, request_date )
+VALUES
+('9.9.9.9', 'GET', '2024-04-15 12:00:00'),
+('8.8.8.8', 'POST', '2024-04-15 12:00:05'),
+('7.7.7.7', 'GET', '2024-04-15 12:00:01');
+"
+
+docker compose run logstash -f /config/logstash.conf
+...
+...
+{
+      "@timestamp" => 2024-04-15T18:31:23.318259883Z,
+          "method" => "GET",
+              "ip" => "9.9.9.9",
+    "request_date" => 2024-04-15T12:00:00.000Z,
+        "@version" => "1",
+              "id" => 7,
+       "timestamp" => 2024-04-15T18:31:08.000Z
+}
+{
+      "@timestamp" => 2024-04-15T18:31:23.319779842Z,
+          "method" => "GET",
+              "ip" => "7.7.7.7",
+    "request_date" => 2024-04-15T12:00:01.000Z,
+        "@version" => "1",
+              "id" => 9,
+       "timestamp" => 2024-04-15T18:31:08.000Z
+}
+{
+      "@timestamp" => 2024-04-15T18:31:23.319499675Z,
+          "method" => "POST",
+              "ip" => "8.8.8.8",
+    "request_date" => 2024-04-15T12:00:05.000Z,
+        "@version" => "1",
+              "id" => 8,
+       "timestamp" => 2024-04-15T18:31:08.000Z
+}
 ```
 
 ### Resources
