@@ -1,3 +1,4 @@
 logstash/data
 data
 mysql-connector-j-8.3.0.tar.gz
+plugin/mysql-connector-j-8.3.0/

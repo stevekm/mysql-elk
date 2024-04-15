@@ -1,7 +1,28 @@
-# https://www.elastic.co/blog/getting-started-with-the-elastic-stack-and-docker-compose
 ---
 version: "3.9"
 services:
+  mysql:
+    container_name: mysql
+    image: mysql/mysql-server:8.0
+    restart: always
+    environment:
+      # these are some default settings to make the setup easier
+      # so you do not have to grab the GENERATED ROOT PASSWORD from the MySQL logs
+      - MYSQL_ROOT_PASSWORD=mysql_root_password_changeme
+      - MYSQL_DATABASE=my-first-db
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+      - MYSQL_LOG_CONSOLE=true
+      - MYSQL_TCP_PORT=3306
+    volumes:
+      # NOTE: you can also mount individual file like this; src=/path-on-host-machine/my.cnf,dst=/etc/my.cnf
+      - ./data/mysql:/var/lib/mysql
+    # make sure these ports are not in use on the local system
+    ports:
+      - 3306:3306
+    network_mode: "host" # this may or may not be what you want to use, but this config will expose the ports on the local host system
+
+
   logstash:
     container_name: logstash
     image: docker.elastic.co/logstash/logstash:8.12.2
@@ -15,20 +36,6 @@ services:
       - ./config:/config
       - ./data/logstash:/data
       - ./example:/logs
-      - ./plugin
-
-
-  mysql:
-    container_name: mysql
-    image: mysql/mysql-server:8.0
-    environment:
-      # these are some default settings to make the setup easier
-      # so you do not have to grab the GENERATED ROOT PASSWORD from the MySQL logs
-      - MYSQL_ROOT_PASSWORD=mysql_root_password_changeme
-      - MYSQL_DATABASE=my-first-db
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=admin
-      - MYSQL_LOG_CONSOLE=true
-    volumes:
-      - ./data/mysql:/var/lib/mysql
-      # --mount type=bind,src=/path-on-host-machine/my.cnf,dst=/etc/my.cnf \
+      - ./plugin:/plugin
+      # /plugin/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar
+    network_mode: "host"
