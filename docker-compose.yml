@@ -15,6 +15,7 @@ services:
       - ./config:/config
       - ./data/logstash:/data
       - ./example:/logs
+      - ./plugin
 
 
   mysql:

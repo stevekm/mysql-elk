@@ -4,7 +4,7 @@ MySQL demo with ELK ( ElasticSearch, Logstash, Kibana )
 
 ## Resources
 
-- https://github.com/stevekm/pg-elk
+- https://github.com/stevekm/pg-elk <- The original version of this repo using PostGreSQL instead of MySQL
 - https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/
   - https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/linux-installation.html
   - https://container-registry.oracle.com/
@@ -23,6 +23,9 @@ MySQL demo with ELK ( ElasticSearch, Logstash, Kibana )
 
 - https://dev.mysql.com/doc/mysql-tutorial-excerpt/8.0/en/getting-information.html
 
+
+- get the connector jar here https://dev.mysql.com/downloads/connector/j/
+  - https://cdn.mysql.com//Downloads/Connector-J/mysql-connector-j-8.3.0.tar.gz
 
 Initialize the MySQL server
 
@@ -111,8 +114,16 @@ docker compose exec -ti mysql mysql -u admin -p my-first-db -e "SELECT * FROM lo
 - https://www.elastic.co/guide/en/logstash/current/logstash-settings-file.html
 - https://www.elastic.co/guide/en/logstash/current/environment-variables.html
 - https://www.elastic.co/guide/en/logstash/current/config-setting-files.html
+- https://stackoverflow.com/questions/59250301/jdbc-driver-not-loaded-while-using-logstash-in-docker
+- https://medium.com/@bsrini/dockerizing-logstash-a-step-by-step-guide-ed7f4e594cb4
+- JDBC plugin https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html
+  - https://www.elastic.co/guide/en/logstash/current/plugins-integrations-jdbc.html
+  - https://github.com/logstash-plugins/logstash-integration-jdbc
 
 ```bash
+# Download the driver for MySQL
+wget -P plugin/ https://cdn.mysql.com//Downloads/Connector-J/mysql-connector-j-8.3.0.tar.gz
+
 # NOTE: 'logstash' is the default entrypoint
 # check logstash help
 docker compose run logstash -h
