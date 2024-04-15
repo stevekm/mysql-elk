@@ -1,0 +1,20 @@
+---
+version: "3.9"
+services:
+  logstash:
+    container_name: logstash
+    image: docker.elastic.co/logstash/logstash:8.12.2
+    environment:
+      - DATADIR=/logstash/data
+      - CONFDIR=/logstash/config
+      - PATTERNDIR=/logstash/config/patterns
+      - CONFIG=/logstash/config/logstash.conf
+      # - LOGDIR=/logs/
+    volumes:
+      - ./logstash/config:/logstash/config
+      - ./logstash/data:/logstash/data
+      # - ./logs/:/logs/ # the dir with log files for ingest
+
+  mysql:
+    container_name: mysql
+    image: mysql/mysql-server:8.0
