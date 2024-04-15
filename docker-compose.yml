@@ -14,7 +14,7 @@ services:
     volumes:
       - ./config:/config
       - ./data/logstash:/data
-      # - ./logs/:/logs/ # the dir with log files for ingest
+      - ./example:/logs
 
 
   mysql:

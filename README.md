@@ -100,3 +100,28 @@ docker compose exec -ti mysql mysql -u admin -p my-first-db -e "SELECT * FROM lo
 # +----+---------+--------+---------------------+---------------------+
 
 ```
+
+
+## Logstash
+
+- https://www.elastic.co/blog/getting-started-with-the-elastic-stack-and-docker-compose
+- https://discuss.elastic.co/t/logstash-healthcheck/271088/2
+- https://www.elastic.co/guide/en/logstash/current/dir-layout.html
+- https://www.elastic.co/guide/en/logstash/current/docker-config.html
+- https://www.elastic.co/guide/en/logstash/current/logstash-settings-file.html
+- https://www.elastic.co/guide/en/logstash/current/environment-variables.html
+- https://www.elastic.co/guide/en/logstash/current/config-setting-files.html
+
+```bash
+# NOTE: 'logstash' is the default entrypoint
+# check logstash help
+docker compose run logstash -h
+
+# test that it works with example configs
+docker compose run logstash -f /config/example.conf
+
+```
+
+## Other Notes
+
+- https://stackoverflow.com/questions/68202592/elasticsearch-healthcheck-on-docker-compose-failing

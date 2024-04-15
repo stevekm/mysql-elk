@@ -1,0 +1,9 @@
+1.2.3.4 - - [20/Feb/2024:04:10:56 +0000] "GET / HTTP/1.1" 200 67 "-" "Mozilla/5.0 (Windows NT 8_1; Win64; x64) AppleWebKit/552.46 (KHTML, like Gecko) Chrome/77.0.1203 Safari/537.36"
+1.2.3.4 - - [20/Feb/2024:04:10:57 +0000] "GET /favicon.ico HTTP/1.1" 404 197 "-" "Mozilla/5.0 (Windows NT 8_0_2; Win64; x64) AppleWebKit/562.39 (KHTML, like Gecko) Chrome/71.0.1748 Safari/537.36"
+1.2.3.4 - - [20/Feb/2024:04:10:57 +0000] "GET /robots.txt HTTP/1.1" 404 197 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/546.37 (KHTML, like Gecko) Chrome/66.0.865 Safari/537.36"
+1.2.3.4 - - [20/Feb/2024:04:10:57 +0000] "GET /sitemap.xml HTTP/1.1" 404 197 "-" "Mozilla/5.0 (Windows NT 9_0_1; Win64; x64) AppleWebKit/588.41 (KHTML, like Gecko) Chrome/74.0.2990 Safari/537.36"
+2.3.4.5 - - [22/Feb/2024:09:53:26 +0000] "GET /favicon.ico HTTP/1.1" 404 564 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36"
+2.3.4.5 - - [22/Feb/2024:09:53:26 +0000] "GET / HTTP/1.1" 200 61 "-" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36"
+3.4.5.6 - - [28/Feb/2024:00:45:45 +0000] "GET / HTTP/1.1" 200 61 "-" "HTTP Banner Detection (https://security.ipip.net)"
+5.6.7.8 - - [20/Feb/2024:09:40:29 +0000] "GET / HTTP/1.1" 200 61 "-" "HTTP Banner Detection (https://security.ipip.net)"
+
