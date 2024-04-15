@@ -13,35 +13,16 @@ services:
       # - LOGDIR=/logs/
     volumes:
       - ./config:/config
-      - ./data:/data
+      - ./data/logstash:/data
       # - ./logs/:/logs/ # the dir with log files for ingest
 
 
-  # NOTE: non-compose commands;
-  # docker run --name=mysql1 -d mysql/mysql-server:8.0
-  # docker logs mysql1
-  # get the GENERATED ROOT PASSWORD from console output
-  # [Entrypoint] GENERATED ROOT PASSWORD: ...
-  # NOTE: if you get this error:
-  # 2024-04-15T14:52:53.495614Z 1 [ERROR] [MY-012574] [InnoDB] Unable to lock ./ibdata1 error: 11
-  # then delete the MySQL data dir and start over...
-  # NOTE: docker compose commands
-  # docker compose up -d mysql
-  # docker compose stop mysql
-  # docker inspect mysql
-  # NOTE: Check that env vars propagated correctly;
-  # $ docker exec mysql env
-  # NOTE: enter the contaier and check the db contents
-  # NOTE: dont do this, the console does not work correctly; docker exec -ti mysql mysql -u admin -p
-  # NOTE: do this; $ docker exec -ti mysql bash
-  # bash-4.4# mysql -u admin -p
-  # OR do this
-  # docker exec -ti mysql mysql -u admin -p -e 'SHOW DATABASES'
   mysql:
     container_name: mysql
     image: mysql/mysql-server:8.0
     environment:
       # these are some default settings to make the setup easier
+      # so you do not have to grab the GENERATED ROOT PASSWORD from the MySQL logs
       - MYSQL_ROOT_PASSWORD=mysql_root_password_changeme
       - MYSQL_DATABASE=my-first-db
       - MYSQL_USER=admin
