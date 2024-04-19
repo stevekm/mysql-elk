@@ -1,0 +1,1 @@
+- simulate passing password with .env file in Docker to Logstash for MySQL db
